@@ -1,0 +1,10 @@
+JOBS:
+    FIRST:
+        FILE: one.sh
+        WALLCLOCK: "00:05"
+    
+    SECOND:
+        FILE: two.sh
+        DEPENDENCIES: FIRST
+        WALLCLOCK: "00:05"
+        platform: "lumi-standard"

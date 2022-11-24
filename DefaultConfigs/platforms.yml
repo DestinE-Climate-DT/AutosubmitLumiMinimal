@@ -1,0 +1,47 @@
+lumi: &lumi-base-config 
+  TYPE: slurm
+  HOST: lumi.csc.fi
+  PROJECT: <project_1234> # computational project 
+  USER: <username> # username to use
+  SCRATCH_DIR: /scratch
+
+PLATFORMS:
+  lumi-standard: 
+    <<: *lumi-base-config
+    MAX_WALLCLOCK: "48:00"
+    PROCESSOR_PER_NODE: 128
+    MAX_PROCESSORS: 65536
+    CUSTOM_DIRECTIVES: '#SBATCH -p standard'
+    TOTAL_JOBS: 120
+
+  lumi-small:
+    <<: *lumi-base-config
+    MAX_WALLCLOCK: "72:00"
+    PROCESSOR_PER_NODE: 128
+    MAX_PROCESSORS: 512
+    CUSTOM_DIRECTIVES: '#SBATCH -p small'
+    TOTAL_JOBS: 220
+
+  lumi-debug:
+    <<: *lumi-base-config
+    MAX_WALLCLOCK: "00:30"
+    PROCESSOR_PER_NODE: 128
+    MAX_PROCESSORS: 512
+    CUSTOM_DIRECTIVES: '#SBATCH -p debug'
+    TOTAL_JOBS: 2 
+  
+  lumi-largemem:
+    <<: *lumi-base-config
+    MAX_WALLCLOCK: "24:00"
+    PROCESSOR_PER_NODE: 128
+    MAX_PROCESSORS: 128
+    CUSTOM_DIRECTIVES: '#SBATCH -p largemem'
+    TOTAL_JOBS: 30
+
+  lumi-eap:
+    <<: *lumi-base-config
+    MAX_WALLCLOCK: "48:00"
+    PROCESSOR_PER_NODE: 64
+    MAX_PROCESSORS: 512
+    CUSTOM_DIRECTIVES: '#SBATCH -p eap'
+    TOTAL_JOBS: 10

@@ -1,0 +1,6 @@
+#!/bin/bash
+#_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+_SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+export MPLCONFIGDIR=/tmp
+singularity --silent exec -B $_SCRIPT_DIR/../.autosubmitrc:$HOME/.autosubmitrc,$(readlink -f $_SCRIPT_DIR/../),$PWD,/tmp  $_SCRIPT_DIR/../autosubmit.sif autosubmit  "$@"
+#docker run -it --rm -v $_SCRIPT_DIR/../.autosubmitrc:$HOME/.autosubmitrc -v $PWD:$PWD -v /tmp:/tmp -v $HOME:$HOME  ghcr.io/destine-climate-dt/autosubmit_d:4.0.3 "$@"
